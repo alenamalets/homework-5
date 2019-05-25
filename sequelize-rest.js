@@ -32,4 +32,32 @@ app.post('/movie', (req, res, next) => {
         .catch(error => next(error))
 })
 
+app.get('/movie/:id', (req, res, next) => {
+    Movie
+      .findByPk(req.params.id)
+      .then(movie => {
+        if (!movie) {
+          return res.status(404).send({
+            message: `Movie does not exist`
+          })
+        }
+        return res.send(movie)
+      })
+      .catch(error => next(error))
+})
+
+app.put('/movie/:id', (req, res, next) => {
+    Movie
+      .findByPk(req.params.id)
+      .then(movie => {
+        if (!movie) {
+          return res.status(404).send({
+            message: `Movie does not exist`
+          })
+        }
+        return movie.update(req.body).then(movie => res.send(movie))
+      })
+      .catch(error => next(error))
+})
+
 app.listen(port, () => `Listening on port ${port}`)
