@@ -19,9 +19,9 @@ pool.query(`
         last_name varchar(255), 
         eye_color varchar(255)
     );`)
-    .then(() => console.log('Tables created successfully'))
+    .then(() => console.log('Table created successfully'))
     .catch(err => {
-        console.error('Unable to create tables, shutting down...', err);
+        console.error('Unable to create table, shutting down...', err);
         process.exit(1);
     })
 

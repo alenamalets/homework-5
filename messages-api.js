@@ -4,7 +4,9 @@ const app = express()
 
 const port = 3000
 let cnt = 0
+
 app.use(bodyParser.json())
+
 app.post('/messages', (req, res) => {
     if (cnt >= 5) {
         return res.status(500).send()
@@ -15,7 +17,8 @@ app.post('/messages', (req, res) => {
     else {
         cnt++
         console.log(req.body.text)
+        return res.json(req.body.text)
     }
-
 })
+
 app.listen(port, () => console.log(`Listening on port ${port}!`))
